@@ -1,4 +1,5 @@
-/**/__pycache__/**/*
+# ignore pycache in all directories
+**/__pycache__
 
 # this is the instance of the db that is being created
 /instance 
