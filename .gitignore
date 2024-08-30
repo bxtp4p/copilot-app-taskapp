@@ -3,3 +3,5 @@
 # this is the instance of the db that is being created
 /instance 
 /venv
+
+**/.coverage

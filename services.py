@@ -1,6 +1,19 @@
 from models import Task
 from extensions import db
 
+class TaskValidation:
+    @staticmethod
+    def validate_title(title):
+        if not title:
+            raise ValueError("Task title is required")
+        if len(title) > 255:
+            raise ValueError("Task title must be 255 characters or less")
+
+    @staticmethod
+    def validate_description(description):
+        if len(description) > 1000:
+            raise ValueError("Task description must be 1000 characters or less")
+
 class TaskService:
     @staticmethod
     def get_all_tasks():
@@ -38,6 +51,9 @@ class TaskService:
         Returns:
         - The newly created Task instance.
         """
+        TaskValidation.validate_title(title)
+        TaskValidation.validate_description(description)
+        
         new_task = Task(
                 title=title,
                 description=description,
@@ -61,6 +77,9 @@ class TaskService:
         Returns:
         - The updated Task instance.
         """
+        TaskValidation.validate_title(title)
+        TaskValidation.validate_description(description)
+        
         task.title = title
         task.description = description
         task.done = done
